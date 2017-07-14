@@ -12,6 +12,7 @@ import java.util.List;
  *
  * @author Viktor Zemtsov.
  */
+@SuppressWarnings({"unchecked", "unused"})
 public class BaseCellDelegateAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private final CellDelegateManager cellDelegateManager;
     private final List items;
@@ -74,10 +75,6 @@ public class BaseCellDelegateAdapter extends RecyclerView.Adapter<BaseViewHolder
         final int itemCount = items.size();
         this.items.addAll(items);
         notifyItemRangeInserted(positionStart, itemCount);
-    }
-
-    public <T> T getItem(int position) {
-        return (T) items.get(position);
     }
 
     //endregion
