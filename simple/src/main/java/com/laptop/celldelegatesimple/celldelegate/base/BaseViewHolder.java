@@ -1,4 +1,4 @@
-package com.laptop.celldelegatesimple.recycler;
+package com.laptop.celldelegatesimple.celldelegate.base;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

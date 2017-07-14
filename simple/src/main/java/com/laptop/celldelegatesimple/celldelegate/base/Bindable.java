@@ -1,4 +1,4 @@
-package com.laptop.celldelegatesimple.recycler;
+package com.laptop.celldelegatesimple.celldelegate.base;
 
 /**
  * Developed by Magora Team (magora-systems.com). 2017.

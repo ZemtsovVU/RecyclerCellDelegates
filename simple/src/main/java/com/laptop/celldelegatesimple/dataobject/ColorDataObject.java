@@ -1,4 +1,4 @@
-package com.laptop.celldelegatesimple;
+package com.laptop.celldelegatesimple.dataobject;
 
 import android.support.annotation.ColorRes;
 

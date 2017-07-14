@@ -1,4 +1,4 @@
-package com.laptop.celldelegatesimple.recycler;
+package com.laptop.celldelegatesimple;
 
 import android.content.res.Resources;
 import android.graphics.Rect;

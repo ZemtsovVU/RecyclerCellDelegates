@@ -1,4 +1,4 @@
-package com.laptop.celldelegatesimple;
+package com.laptop.celldelegatesimple.celldelegate;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.laptop.celldelegatesimple.recycler.BaseViewHolder;
-import com.laptop.celldelegatesimple.recycler.CellDelegate;
-import com.laptop.celldelegatesimple.recycler.OnCellDelegateClickListener;
+import com.laptop.celldelegatesimple.R;
+import com.laptop.celldelegatesimple.dataobject.RedDataObject;
+import com.laptop.celldelegatesimple.celldelegate.base.BaseViewHolder;
+import com.laptop.celldelegatesimple.celldelegate.base.CellDelegate;
+import com.laptop.celldelegatesimple.celldelegate.base.OnCellDelegateClickListener;
 
 import butterknife.BindView;
 

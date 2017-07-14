@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.laptop.celldelegatesimple.recycler.BaseCellDelegateAdapter;
-import com.laptop.celldelegatesimple.recycler.MarginItemDecoration;
+import com.laptop.celldelegatesimple.celldelegate.GreenCellDelegate;
+import com.laptop.celldelegatesimple.celldelegate.RedCellDelegate;
+import com.laptop.celldelegatesimple.dataobject.GreenDataObject;
+import com.laptop.celldelegatesimple.dataobject.RedDataObject;
+import com.laptop.celldelegatesimple.celldelegate.base.BaseCellDelegateAdapter;
 
 import java.util.Arrays;
 

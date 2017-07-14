@@ -1,4 +1,4 @@
-package com.laptop.celldelegatesimple.recycler;
+package com.laptop.celldelegatesimple.celldelegate.base;
 
 import android.view.View;
 

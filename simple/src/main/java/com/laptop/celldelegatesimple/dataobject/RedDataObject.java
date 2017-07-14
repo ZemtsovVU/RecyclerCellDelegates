@@ -1,4 +1,4 @@
-package com.laptop.celldelegatesimple;
+package com.laptop.celldelegatesimple.dataobject;
 
 import android.support.annotation.ColorRes;
 
@@ -7,11 +7,11 @@ import android.support.annotation.ColorRes;
  *
  * @author Viktor Zemtsov.
  */
-public final class GreenDataObject {
+public final class RedDataObject {
     @ColorRes
     public final int color;
 
-    public GreenDataObject() {
-        this.color = android.R.color.holo_green_dark;
+    public RedDataObject() {
+        this.color = android.R.color.holo_red_dark;
     }
 }
