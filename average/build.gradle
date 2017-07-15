@@ -6,14 +6,14 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.laptop.celldelegatesimple"
+        applicationId "com.laptop.celldelegateaverage"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "0.1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-        project.ext.set("archivesBaseName", "cell-delegates-simple-" + defaultConfig.versionName);
+        project.ext.set("archivesBaseName", "cell-delegates-average-" + defaultConfig.versionName);
     }
 
     buildTypes {
