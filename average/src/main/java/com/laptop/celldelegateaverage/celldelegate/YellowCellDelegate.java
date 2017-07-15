@@ -22,7 +22,7 @@ import butterknife.BindView;
  *
  * @author Viktor Zemtsov.
  */
-public class YellowCellDelegate implements CellDelegate<ColorDataObject> {
+public final class YellowCellDelegate implements CellDelegate<ColorDataObject> {
     private static final int TYPE = UUID.randomUUID().hashCode();
 
     private OnCellDelegateClickListener<ColorDataObject> cellDelegateClickListener;
@@ -34,9 +34,7 @@ public class YellowCellDelegate implements CellDelegate<ColorDataObject> {
 
     @Override
     public boolean is(ViewTypeable item) {
-        // TODO: Избавиться от каста
-        return item.getViewType() == ColorDataObject.VIEW_TYPE
-                && ((ColorDataObject) item).type == ColorDataObject.Type.YELLOW;
+        return item.getViewType() == ColorDataObject.YELLOW_VIEW_TYPE;
     }
 
     @Override

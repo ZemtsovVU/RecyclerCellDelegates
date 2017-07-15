@@ -21,7 +21,7 @@ import butterknife.BindView;
  *
  * @author Viktor Zemtsov.
  */
-public class BlueCellDelegate implements CellDelegate<ColorDataObject> {
+public final class BlueCellDelegate implements CellDelegate<ColorDataObject> {
     private static final int TYPE = UUID.randomUUID().hashCode();
 
     private OnCellDelegateClickListener<ColorDataObject> cellDelegateClickListener;

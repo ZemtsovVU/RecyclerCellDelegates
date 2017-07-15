@@ -12,7 +12,8 @@ import java.util.UUID;
  * @author Viktor Zemtsov.
  */
 public final class ColorDataObject implements ViewTypeable {
-    public static final int VIEW_TYPE = UUID.randomUUID().hashCode();
+    public static final int BLUE_VIEW_TYPE = UUID.randomUUID().hashCode();
+    public static final int YELLOW_VIEW_TYPE = UUID.randomUUID().hashCode();
 
     public final Type type;
     @ColorRes
@@ -27,10 +28,23 @@ public final class ColorDataObject implements ViewTypeable {
 
     @Override
     public int getViewType() {
-        return VIEW_TYPE;
+        return type.getViewType();
     }
 
     //endregion
 
-    public enum Type {BLUE, YELLOW}
+    public enum Type {
+        BLUE(BLUE_VIEW_TYPE),
+        YELLOW(YELLOW_VIEW_TYPE);
+
+        private int viewType;
+
+        Type(int viewType) {
+            this.viewType = viewType;
+        }
+
+        public int getViewType() {
+            return viewType;
+        }
+    }
 }
