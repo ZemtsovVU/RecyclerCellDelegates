@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.laptop.celldelegatesimple.R;
-import com.laptop.celldelegatesimple.dataobject.GreenDataObject;
 import com.laptop.celldelegatesimple.celldelegate.base.BaseViewHolder;
 import com.laptop.celldelegatesimple.celldelegate.base.CellDelegate;
 import com.laptop.celldelegatesimple.celldelegate.base.OnCellDelegateClickListener;
+import com.laptop.celldelegatesimple.dataobject.GreenDataObject;
+
+import java.util.UUID;
 
 import butterknife.BindView;
 
@@ -20,7 +22,7 @@ import butterknife.BindView;
  * @author Viktor Zemtsov.
  */
 public final class GreenCellDelegate implements CellDelegate<GreenDataObject> {
-    private static final int LAYOUT_ID = R.layout.cell_color;
+    private static final int TYPE = UUID.randomUUID().hashCode();
 
     private OnCellDelegateClickListener<GreenDataObject> cellDelegateClickListener;
 
@@ -36,14 +38,13 @@ public final class GreenCellDelegate implements CellDelegate<GreenDataObject> {
 
     @Override
     public int type() {
-//        return LAYOUT_ID;
-        return 20; // TODO: 14.07.2017
+        return TYPE;
     }
 
     @Override
-    public BaseViewHolder holder(ViewGroup parent) {
+    public BaseViewHolder<GreenDataObject> holder(ViewGroup parent) {
         final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        final View view = inflater.inflate(LAYOUT_ID, parent, false);
+        final View view = inflater.inflate(R.layout.cell_color, parent, false);
         return new GreenViewHolder(view);
     }
 

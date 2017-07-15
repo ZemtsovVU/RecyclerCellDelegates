@@ -24,6 +24,7 @@ public final class BaseCellDelegateManager implements CellDelegateManager {
 
     @Override
     public CellDelegate getDelegate(Object item) {
+        // TODO: Можно попробовать оптимизировать с помощью map
         for (CellDelegate delegate : delegates) {
             if (delegate.is(item)) {
                 return delegate;

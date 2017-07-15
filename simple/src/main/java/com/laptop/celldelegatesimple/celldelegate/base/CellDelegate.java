@@ -13,7 +13,7 @@ public interface CellDelegate<T> {
 
     int type();
 
-    BaseViewHolder holder(ViewGroup parent);
+    BaseViewHolder<T> holder(ViewGroup parent);
 
     void bind(BaseViewHolder<T> holder, T item);
 }
