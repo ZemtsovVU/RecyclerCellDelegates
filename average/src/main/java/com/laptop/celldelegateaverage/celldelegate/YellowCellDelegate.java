@@ -13,8 +13,6 @@ import com.laptop.celldelegateaverage.celldelegate.base.OnCellDelegateClickListe
 import com.laptop.celldelegateaverage.celldelegate.base.ViewTypeable;
 import com.laptop.celldelegateaverage.dataobject.ColorDataObject;
 
-import java.util.UUID;
-
 import butterknife.BindView;
 
 /**
@@ -23,8 +21,6 @@ import butterknife.BindView;
  * @author Viktor Zemtsov.
  */
 public final class YellowCellDelegate implements CellDelegate<ColorDataObject> {
-    private static final int TYPE = UUID.randomUUID().hashCode();
-
     private OnCellDelegateClickListener<ColorDataObject> cellDelegateClickListener;
 
     public void setCellDelegateClickListener(
@@ -39,7 +35,7 @@ public final class YellowCellDelegate implements CellDelegate<ColorDataObject> {
 
     @Override
     public int type() {
-        return TYPE;
+        return ColorDataObject.YELLOW_VIEW_TYPE;
     }
 
     @Override
