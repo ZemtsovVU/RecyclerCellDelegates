@@ -17,5 +17,5 @@ public final class ColorDataObject {
         this.color = color;
     }
 
-    public enum Type {RED, GREEN}
+    public enum Type {BLUE, YELLOW}
 }

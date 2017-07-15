@@ -6,11 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.laptop.celldelegatesimple.celldelegate.BlueCellDelegate;
 import com.laptop.celldelegatesimple.celldelegate.GreenCellDelegate;
 import com.laptop.celldelegatesimple.celldelegate.RedCellDelegate;
+import com.laptop.celldelegatesimple.celldelegate.YellowCellDelegate;
+import com.laptop.celldelegatesimple.celldelegate.base.BaseCellDelegateAdapter;
+import com.laptop.celldelegatesimple.dataobject.ColorDataObject;
 import com.laptop.celldelegatesimple.dataobject.GreenDataObject;
 import com.laptop.celldelegatesimple.dataobject.RedDataObject;
-import com.laptop.celldelegatesimple.celldelegate.base.BaseCellDelegateAdapter;
 
 import java.util.Arrays;
 
@@ -24,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private BaseCellDelegateAdapter adapter;
     private RedCellDelegate redCellDelegate;
     private GreenCellDelegate greenCellDelegate;
+    private BlueCellDelegate blueCellDelegate;
+    private YellowCellDelegate yellowCellDelegate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +46,11 @@ public class MainActivity extends AppCompatActivity {
         adapter = new BaseCellDelegateAdapter();
         redCellDelegate = new RedCellDelegate();
         greenCellDelegate = new GreenCellDelegate();
+        blueCellDelegate = new BlueCellDelegate();
+        yellowCellDelegate = new YellowCellDelegate();
 
-        adapter.setCellDelegates(redCellDelegate, greenCellDelegate);
+        adapter.setCellDelegates(
+                redCellDelegate, greenCellDelegate, blueCellDelegate, yellowCellDelegate);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new MarginItemDecoration(R.dimen.size_small));
@@ -55,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
 
         greenCellDelegate.setCellDelegateClickListener((itemView, position, item) ->
                 showMessage("Green cell clicked"));
+
+        blueCellDelegate.setCellDelegateClickListener((itemView, position, item) ->
+                showMessage("Blue cell clicked"));
+
+        yellowCellDelegate.setCellDelegateClickListener((itemView, position, item) ->
+                showMessage("Yellow cell clicked"));
     }
 
     private void initRecyclerData() {
@@ -62,8 +76,10 @@ public class MainActivity extends AppCompatActivity {
                 new RedDataObject(),
                 new RedDataObject(),
                 new GreenDataObject(),
+                new ColorDataObject(ColorDataObject.Type.BLUE, android.R.color.holo_blue_dark),
                 new RedDataObject(),
                 new GreenDataObject(),
+                new ColorDataObject(ColorDataObject.Type.YELLOW, android.R.color.holo_orange_dark),
                 new RedDataObject()
         ));
     }
