@@ -19,7 +19,7 @@ public class BaseCellDelegateAdapter extends RecyclerView.Adapter<BaseViewHolder
 
     public BaseCellDelegateAdapter() {
         this.cellDelegateManager = new BaseCellDelegateManager();
-        this.items = new ArrayList();
+        this.items = new ArrayList<>();
     }
 
     //region RecyclerView.Adapter section

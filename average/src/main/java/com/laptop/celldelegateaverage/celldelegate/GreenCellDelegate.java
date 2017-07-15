@@ -10,8 +10,8 @@ import com.laptop.celldelegateaverage.R;
 import com.laptop.celldelegateaverage.celldelegate.base.BaseViewHolder;
 import com.laptop.celldelegateaverage.celldelegate.base.CellDelegate;
 import com.laptop.celldelegateaverage.celldelegate.base.OnCellDelegateClickListener;
-import com.laptop.celldelegateaverage.dataobject.GreenDataObject;
 import com.laptop.celldelegateaverage.celldelegate.base.ViewTypeable;
+import com.laptop.celldelegateaverage.dataobject.GreenDataObject;
 
 import butterknife.BindView;
 
@@ -39,7 +39,7 @@ public final class GreenCellDelegate implements CellDelegate<GreenDataObject> {
     }
 
     @Override
-    public BaseViewHolder holder(ViewGroup parent) {
+    public BaseViewHolder<GreenDataObject> holder(ViewGroup parent) {
         final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         final View view = inflater.inflate(R.layout.cell_color, parent, false);
         return new GreenViewHolder(view);
