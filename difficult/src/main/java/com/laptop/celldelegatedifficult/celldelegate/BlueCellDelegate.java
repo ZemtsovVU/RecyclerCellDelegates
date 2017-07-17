@@ -32,9 +32,8 @@ public final class BlueCellDelegate implements CellDelegate<ColorDataObject> {
     }
 
     @Override
-    public boolean is(Object item) {
-        return item instanceof ColorDataObject
-                && ((ColorDataObject) item).type == ColorDataObject.Type.BLUE;
+    public boolean is(ColorDataObject item) {
+        return false; // TODO: 17.07.2017
     }
 
     @Override

@@ -5,11 +5,12 @@ package com.laptop.celldelegatedifficult.celldelegate.base;
  *
  * @author Viktor Zemtsov.
  */
-public interface CellDelegateManager {
+public interface CellDelegateManager<T> {
 
-    void setDelegates(CellDelegate... delegates);
+    @SuppressWarnings("unchecked")
+    void setDelegates(CellDelegate<T>... delegates);
 
-    CellDelegate getDelegate(Object item);
+    CellDelegate<T> getDelegate(T item);
 
-    CellDelegate getDelegate(int viewType);
+    CellDelegate<T> getDelegate(int viewType);
 }

@@ -9,23 +9,23 @@ import java.util.List;
  *
  * @author Viktor Zemtsov.
  */
-public final class BaseCellDelegateManager implements CellDelegateManager {
-    private final List<CellDelegate> delegates;
+public final class BaseCellDelegateManager<T> implements CellDelegateManager<T> {
+    private final List<CellDelegate<T>> delegates;
 
     public BaseCellDelegateManager() {
-        this.delegates = new ArrayList<>();
+        delegates = new ArrayList<>();
     }
 
+    @SafeVarargs
     @Override
-    public void setDelegates(CellDelegate... delegates) {
+    public final void setDelegates(CellDelegate<T>... delegates) {
         this.delegates.clear();
         this.delegates.addAll(Arrays.asList(delegates));
     }
 
     @Override
-    public CellDelegate getDelegate(Object item) {
-        // TODO: Можно попробовать оптимизировать с помощью map
-        for (CellDelegate delegate : delegates) {
+    public CellDelegate<T> getDelegate(T item) {
+        for (CellDelegate<T> delegate : delegates) {
             if (delegate.is(item)) {
                 return delegate;
             }
@@ -34,8 +34,8 @@ public final class BaseCellDelegateManager implements CellDelegateManager {
     }
 
     @Override
-    public CellDelegate getDelegate(int viewType) {
-        for (CellDelegate delegate : delegates) {
+    public CellDelegate<T> getDelegate(int viewType) {
+        for (CellDelegate<T> delegate : delegates) {
             if (delegate.type() == viewType) {
                 return delegate;
             }

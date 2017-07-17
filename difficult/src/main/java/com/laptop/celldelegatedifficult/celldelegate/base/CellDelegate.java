@@ -9,7 +9,7 @@ import android.view.ViewGroup;
  */
 public interface CellDelegate<T> {
 
-    boolean is(Object item);
+    boolean is(T item);
 
     int type();
 

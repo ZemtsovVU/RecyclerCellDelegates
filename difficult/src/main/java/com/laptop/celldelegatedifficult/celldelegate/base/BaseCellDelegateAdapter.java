@@ -12,32 +12,31 @@ import java.util.List;
  *
  * @author Viktor Zemtsov.
  */
-@SuppressWarnings({"unchecked", "unused"})
-public class BaseCellDelegateAdapter extends RecyclerView.Adapter<BaseViewHolder> {
-    private final CellDelegateManager cellDelegateManager;
-    private final List items;
+public class BaseCellDelegateAdapter<T> extends RecyclerView.Adapter<BaseViewHolder<T>> {
+    private final CellDelegateManager<T> cellDelegateManager;
+    private final List<T> items;
 
     public BaseCellDelegateAdapter() {
-        this.cellDelegateManager = new BaseCellDelegateManager();
-        this.items = new ArrayList();
+        this.cellDelegateManager = new BaseCellDelegateManager<>();
+        this.items = new ArrayList<>();
     }
 
     //region RecyclerView.Adapter section
 
     @Override
     public int getItemViewType(int position) {
-        final Object item = items.get(position);
+        final T item = items.get(position);
         return cellDelegateManager.getDelegate(item).type();
     }
 
     @Override
-    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BaseViewHolder<T> onCreateViewHolder(ViewGroup parent, int viewType) {
         return cellDelegateManager.getDelegate(viewType).holder(parent);
     }
 
     @Override
-    public void onBindViewHolder(BaseViewHolder holder, int position) {
-        final Object item = items.get(position);
+    public void onBindViewHolder(BaseViewHolder<T> holder, int position) {
+        final T item = items.get(position);
         cellDelegateManager.getDelegate(item).bind(holder, item);
     }
 
@@ -50,7 +49,8 @@ public class BaseCellDelegateAdapter extends RecyclerView.Adapter<BaseViewHolder
 
     //region CellDelegateManager section
 
-    public void setCellDelegates(CellDelegate... cellDelegates) {
+    @SafeVarargs
+    public final void setCellDelegates(CellDelegate<T>... cellDelegates) {
         cellDelegateManager.setDelegates(cellDelegates);
     }
 
@@ -58,7 +58,7 @@ public class BaseCellDelegateAdapter extends RecyclerView.Adapter<BaseViewHolder
 
     //region Items section
 
-    public void setItems(Collection items) {
+    public void setItems(Collection<T> items) {
         if (items == null) {
             return;
         }
@@ -67,7 +67,7 @@ public class BaseCellDelegateAdapter extends RecyclerView.Adapter<BaseViewHolder
         notifyDataSetChanged();
     }
 
-    public void addItems(Collection items) {
+    public void addItems(Collection<T> items) {
         if (items == null) {
             return;
         }

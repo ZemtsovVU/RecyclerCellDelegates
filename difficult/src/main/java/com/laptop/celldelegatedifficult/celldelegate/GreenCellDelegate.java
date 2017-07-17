@@ -32,8 +32,8 @@ public final class GreenCellDelegate implements CellDelegate<GreenDataObject> {
     }
 
     @Override
-    public boolean is(Object item) {
-        return item instanceof GreenDataObject;
+    public boolean is(GreenDataObject item) {
+        return false; // TODO: 17.07.2017
     }
 
     @Override
