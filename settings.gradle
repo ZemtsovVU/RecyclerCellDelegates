@@ -1,1 +1,1 @@
-include ':simple', ':average'
+include ':simple', ':average', ':difficult'
