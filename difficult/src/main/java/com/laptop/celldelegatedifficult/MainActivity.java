@@ -13,6 +13,7 @@ import com.laptop.celldelegatedifficult.celldelegate.YellowCellDelegate;
 import com.laptop.celldelegatedifficult.celldelegate.base.BaseCellDelegateAdapter;
 import com.laptop.celldelegatedifficult.dataobject.ColorDataObject;
 import com.laptop.celldelegatedifficult.dataobject.GreenDataObject;
+import com.laptop.celldelegatedifficult.dataobject.MainDataObjectWrapper;
 import com.laptop.celldelegatedifficult.dataobject.RedDataObject;
 
 import java.util.Arrays;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.recycler_view)
     protected RecyclerView recyclerView;
 
-    private BaseCellDelegateAdapter adapter;
+    private BaseCellDelegateAdapter<MainDataObjectWrapper> adapter;
     private RedCellDelegate redCellDelegate;
     private GreenCellDelegate greenCellDelegate;
     private BlueCellDelegate blueCellDelegate;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     //region Initialization section
 
     private void initViews() {
-        adapter = new BaseCellDelegateAdapter();
+        adapter = new BaseCellDelegateAdapter<>();
         redCellDelegate = new RedCellDelegate();
         greenCellDelegate = new GreenCellDelegate();
         blueCellDelegate = new BlueCellDelegate();
@@ -73,14 +74,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRecyclerData() {
         adapter.setItems(Arrays.asList(
-                new RedDataObject(),
-                new RedDataObject(),
-                new GreenDataObject(),
-                new ColorDataObject(ColorDataObject.Type.BLUE, android.R.color.holo_blue_dark),
-                new RedDataObject(),
-                new GreenDataObject(),
-                new ColorDataObject(ColorDataObject.Type.YELLOW, android.R.color.holo_orange_dark),
-                new RedDataObject()
+                new MainDataObjectWrapper(new RedDataObject()),
+                new MainDataObjectWrapper(new RedDataObject()),
+                new MainDataObjectWrapper(new GreenDataObject()),
+                new MainDataObjectWrapper(new ColorDataObject(ColorDataObject.Type.BLUE, android.R.color.holo_blue_dark)),
+                new MainDataObjectWrapper(new RedDataObject()),
+                new MainDataObjectWrapper(new GreenDataObject()),
+                new MainDataObjectWrapper(new ColorDataObject(ColorDataObject.Type.YELLOW, android.R.color.holo_orange_dark)),
+                new MainDataObjectWrapper(new RedDataObject())
         ));
     }
 

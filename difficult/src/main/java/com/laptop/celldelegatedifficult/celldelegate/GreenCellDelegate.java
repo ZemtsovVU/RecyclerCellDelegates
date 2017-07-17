@@ -11,6 +11,7 @@ import com.laptop.celldelegatedifficult.celldelegate.base.BaseViewHolder;
 import com.laptop.celldelegatedifficult.celldelegate.base.CellDelegate;
 import com.laptop.celldelegatedifficult.celldelegate.base.OnCellDelegateClickListener;
 import com.laptop.celldelegatedifficult.dataobject.GreenDataObject;
+import com.laptop.celldelegatedifficult.dataobject.MainDataObjectWrapper;
 
 import java.util.UUID;
 
@@ -21,7 +22,7 @@ import butterknife.BindView;
  *
  * @author Viktor Zemtsov.
  */
-public final class GreenCellDelegate implements CellDelegate<GreenDataObject> {
+public final class GreenCellDelegate implements CellDelegate<MainDataObjectWrapper> {
     private static final int TYPE = UUID.randomUUID().hashCode();
 
     private OnCellDelegateClickListener<GreenDataObject> cellDelegateClickListener;
@@ -32,8 +33,8 @@ public final class GreenCellDelegate implements CellDelegate<GreenDataObject> {
     }
 
     @Override
-    public boolean is(GreenDataObject item) {
-        return false; // TODO: 17.07.2017
+    public boolean is(MainDataObjectWrapper item) {
+        return item.greenDataObject != null;
     }
 
     @Override
@@ -42,18 +43,18 @@ public final class GreenCellDelegate implements CellDelegate<GreenDataObject> {
     }
 
     @Override
-    public BaseViewHolder<GreenDataObject> holder(ViewGroup parent) {
+    public BaseViewHolder<MainDataObjectWrapper> holder(ViewGroup parent) {
         final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         final View view = inflater.inflate(R.layout.cell_color, parent, false);
         return new GreenViewHolder(view);
     }
 
     @Override
-    public void bind(BaseViewHolder<GreenDataObject> holder, GreenDataObject item) {
+    public void bind(BaseViewHolder<MainDataObjectWrapper> holder, MainDataObjectWrapper item) {
         holder.bind(item);
     }
 
-    public class GreenViewHolder extends BaseViewHolder<GreenDataObject> {
+    public class GreenViewHolder extends BaseViewHolder<MainDataObjectWrapper> {
         @BindView(R.id.root_view_group)
         protected ViewGroup rootViewGroup;
 
@@ -62,13 +63,20 @@ public final class GreenCellDelegate implements CellDelegate<GreenDataObject> {
         }
 
         @Override
-        public void bind(GreenDataObject item) {
+        public void bind(MainDataObjectWrapper item) {
             final Context context = itemView.getContext();
-            rootViewGroup.setBackgroundColor(ContextCompat.getColor(context, item.color));
+            final GreenDataObject greenDataObject = item.greenDataObject;
+
+            if (greenDataObject == null) {
+                return;
+            }
+
+            rootViewGroup.setBackgroundColor(ContextCompat.getColor(context, greenDataObject.color));
 
             itemView.setOnClickListener(view -> {
                 if (cellDelegateClickListener != null) {
-                    cellDelegateClickListener.onCellDelegateClick(itemView, getLayoutPosition(), item);
+                    cellDelegateClickListener.onCellDelegateClick(
+                            itemView, getLayoutPosition(), greenDataObject);
                 }
             });
         }

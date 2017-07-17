@@ -10,6 +10,7 @@ import com.laptop.celldelegatedifficult.R;
 import com.laptop.celldelegatedifficult.celldelegate.base.BaseViewHolder;
 import com.laptop.celldelegatedifficult.celldelegate.base.CellDelegate;
 import com.laptop.celldelegatedifficult.celldelegate.base.OnCellDelegateClickListener;
+import com.laptop.celldelegatedifficult.dataobject.MainDataObjectWrapper;
 import com.laptop.celldelegatedifficult.dataobject.RedDataObject;
 
 import java.util.UUID;
@@ -21,7 +22,7 @@ import butterknife.BindView;
  *
  * @author Viktor Zemtsov.
  */
-public final class RedCellDelegate implements CellDelegate<RedDataObject> {
+public final class RedCellDelegate implements CellDelegate<MainDataObjectWrapper> {
     private static final int TYPE = UUID.randomUUID().hashCode();
 
     private OnCellDelegateClickListener<RedDataObject> cellDelegateClickListener;
@@ -32,8 +33,8 @@ public final class RedCellDelegate implements CellDelegate<RedDataObject> {
     }
 
     @Override
-    public boolean is(RedDataObject item) {
-        return false; // TODO: 17.07.2017
+    public boolean is(MainDataObjectWrapper item) {
+        return item.redDataObject != null;
     }
 
     @Override
@@ -42,18 +43,18 @@ public final class RedCellDelegate implements CellDelegate<RedDataObject> {
     }
 
     @Override
-    public BaseViewHolder<RedDataObject> holder(ViewGroup parent) {
+    public BaseViewHolder<MainDataObjectWrapper> holder(ViewGroup parent) {
         final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         final View view = inflater.inflate(R.layout.cell_color, parent, false);
         return new RedViewHolder(view);
     }
 
     @Override
-    public void bind(BaseViewHolder<RedDataObject> holder, RedDataObject item) {
+    public void bind(BaseViewHolder<MainDataObjectWrapper> holder, MainDataObjectWrapper item) {
         holder.bind(item);
     }
 
-    public class RedViewHolder extends BaseViewHolder<RedDataObject> {
+    public class RedViewHolder extends BaseViewHolder<MainDataObjectWrapper> {
         @BindView(R.id.root_view_group)
         protected ViewGroup rootViewGroup;
 
@@ -62,13 +63,20 @@ public final class RedCellDelegate implements CellDelegate<RedDataObject> {
         }
 
         @Override
-        public void bind(RedDataObject item) {
+        public void bind(MainDataObjectWrapper item) {
             final Context context = itemView.getContext();
-            rootViewGroup.setBackgroundColor(ContextCompat.getColor(context, item.color));
+            final RedDataObject redDataObject = item.redDataObject;
+
+            if (redDataObject == null) {
+                return;
+            }
+
+            rootViewGroup.setBackgroundColor(ContextCompat.getColor(context, redDataObject.color));
 
             itemView.setOnClickListener(view -> {
                 if (cellDelegateClickListener != null) {
-                    cellDelegateClickListener.onCellDelegateClick(itemView, getLayoutPosition(), item);
+                    cellDelegateClickListener.onCellDelegateClick(
+                            itemView, getLayoutPosition(), redDataObject);
                 }
             });
         }
