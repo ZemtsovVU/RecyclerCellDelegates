@@ -7,12 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.laptop.celldelegatesimple.R;
+import com.laptop.celldelegatesimple.celldelegate.base.BaseCellDelegate;
 import com.laptop.celldelegatesimple.celldelegate.base.BaseViewHolder;
-import com.laptop.celldelegatesimple.celldelegate.base.CellDelegate;
 import com.laptop.celldelegatesimple.celldelegate.base.OnCellDelegateClickListener;
 import com.laptop.celldelegatesimple.dataobject.ColorDataObject;
-
-import java.util.UUID;
 
 import butterknife.BindView;
 
@@ -21,9 +19,7 @@ import butterknife.BindView;
  *
  * @author Viktor Zemtsov.
  */
-public final class BlueCellDelegate implements CellDelegate<ColorDataObject> {
-    private static final int TYPE = UUID.randomUUID().hashCode();
-
+public final class BlueCellDelegate extends BaseCellDelegate<ColorDataObject> {
     private OnCellDelegateClickListener<ColorDataObject> cellDelegateClickListener;
 
     public void setCellDelegateClickListener(
@@ -38,20 +34,10 @@ public final class BlueCellDelegate implements CellDelegate<ColorDataObject> {
     }
 
     @Override
-    public int type() {
-        return TYPE;
-    }
-
-    @Override
     public BaseViewHolder<ColorDataObject> holder(ViewGroup parent) {
         final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         final View view = inflater.inflate(R.layout.cell_color, parent, false);
         return new BlueViewHolder(view);
-    }
-
-    @Override
-    public void bind(BaseViewHolder<ColorDataObject> holder, ColorDataObject item) {
-        holder.bind(item);
     }
 
     public class BlueViewHolder extends BaseViewHolder<ColorDataObject> {
